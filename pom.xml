@@ -2,16 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.qiqiim</groupId>
-  <artifactId>qiqiim-server</artifactId>
+  <artifactId>imserver</artifactId>
   <packaging>war</packaging>
   <version>0.4.1</version>
   <name>qiqiim-server dev Webapp</name>
   <url>http://maven.apache.org</url>
+
  <properties>
   	<springversion>4.3.7.RELEASE</springversion>  
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.7</java.version>
   </properties>
+
  <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -384,7 +386,7 @@
                     <port>8080</port>
                     <path>/qiqiim-server</path>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <finalName>qiqiim-server</finalName>
+                    <finalName>imserver</finalName>
                     <server>tomcat7</server>
                 </configuration>
             </plugin>
@@ -406,6 +408,6 @@
                 <filtering>false</filtering>    
          </resource> 
     </resources>
-    <finalName>qiqiim-server</finalName>
+    <finalName>imserver</finalName>
   </build>
 </project>

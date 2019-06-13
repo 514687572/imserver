@@ -17,8 +17,10 @@
 
 
 
-
 <script src="layui/layui.js"></script>
+<script src="layui/lay/modules/mobile/layer-mobile.js"></script>
+<script src="layui/lay/modules/mobile/layim-mobile.js"></script>
+<script src="layui/lay/modules/mobile/upload-mobile.js"></script>
 <script src="js/websocketconfig.js"></script>
 <script>
 var msgs =null;

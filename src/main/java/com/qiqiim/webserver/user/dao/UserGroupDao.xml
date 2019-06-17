@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiqiim.webserver.user.dao.UserGroupDao">
+    <resultMap id="BaseResultMap" type="com.qiqiim.webserver.user.model.UserGroup">
+        <id column="userGroup_id" jdbcType="BIGINT" property="id"/>
+        <result column="userGroup_avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="userGroup_group_name" jdbcType="VARCHAR" property="groupName"/>
+        <result column="userGroup_members" jdbcType="VARCHAR" property="members"/>
+        <result column="userGroup_remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    userGroup.id as userGroup_id, userGroup.avatar as userGroup_avatar, userGroup.group_name as userGroup_group_name, 
+    userGroup.members as userGroup_members, userGroup.remark as userGroup_remark
+  </sql>
+    <select id="selectByExample" parameterType="com.qiqiim.webserver.user.example.UserGroupExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from user_group userGroup
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="fromRowNum != null and toRowNum >= 0">
+            limit #{fromRowNum}, #{toRowNum}
+        </if>
+    </select>
+    <select id="selectUserGroupByExample" parameterType="long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_group userGroup,user_group_list userGroupList where userGroup.id=userGroupList.group_id and userGroupList.uid=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_group userGroup
+        where userGroup.id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.qiqiim.webserver.user.example.UserGroupExample">
+        delete userGroup from user_group userGroup
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.qiqiim.webserver.user.model.UserGroup">
+    insert into user_group (id, avatar, group_name, 
+      members, remark)
+    values (#{id,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{members,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.qiqiim.webserver.user.model.UserGroup">
+        insert into user_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="groupName != null">
+                group_name,
+            </if>
+            <if test="members != null">
+                members,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="members != null">
+                #{members,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.qiqiim.webserver.user.example.UserGroupExample"
+            resultType="java.lang.Integer">
+        select count(*) from user_group userGroup
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update user_group userGroup
+        <set>
+            <if test="record.id != null">
+                userGroup.id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.avatar != null">
+                userGroup.avatar = #{record.avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="record.groupName != null">
+                userGroup.group_name = #{record.groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.members != null">
+                userGroup.members = #{record.members,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null">
+                userGroup.remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update user_group userGroup
+        set userGroup.id = #{record.id,jdbcType=BIGINT},
+        userGroup.avatar = #{record.avatar,jdbcType=VARCHAR},
+        userGroup.group_name = #{record.groupName,jdbcType=VARCHAR},
+        userGroup.members = #{record.members,jdbcType=VARCHAR},
+        userGroup.remark = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qiqiim.webserver.user.model.UserGroup">
+        update user_group
+        <set>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName,jdbcType=VARCHAR},
+            </if>
+            <if test="members != null">
+                members = #{members,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qiqiim.webserver.user.model.UserGroup">
+    update user_group
+    set avatar = #{avatar,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR},
+      members = #{members,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

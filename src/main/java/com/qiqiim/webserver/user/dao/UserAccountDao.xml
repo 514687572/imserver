@@ -3,7 +3,7 @@
 
 <mapper namespace="com.qiqiim.webserver.user.dao.UserAccountDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.qiqiim.webserver.user.model.UserAccountEntity" id="userAccountMap">
         <result property="id" column="id"/>
         <result property="account" column="account"/>
@@ -14,15 +14,17 @@
         <result property="updatedate" column="updatedate"/>
         <result property="updateuser" column="updateuser"/>
     </resultMap>
-    
-    <resultMap type="com.qiqiim.webserver.user.model.UserAccountEntity" id="userAccountAndInfoMap" extends="userAccountMap">
-   		 <!-- 一对一查询 -->
-  		 <association  property="userInfo" column="id" select="com.qiqiim.webserver.user.dao.UserInfoDao.queryByUid"></association>
-  		  <!-- 一对多查询    -->
-          <!--   <collection property="*list" column="id" select="*"></collection> -->
+
+    <resultMap type="com.qiqiim.webserver.user.model.UserAccountEntity" id="userAccountAndInfoMap"
+               extends="userAccountMap">
+        <!-- 一对一查询 -->
+        <association property="userInfo" column="id"
+                     select="com.qiqiim.webserver.user.dao.UserInfoDao.queryByUid"></association>
+        <!-- 一对多查询    -->
+        <!--   <collection property="*list" column="id" select="*"></collection> -->
     </resultMap>
-    
-  <sql id="Base_Column_List" > 
+
+    <sql id="Base_Column_List">
   	  	     id ,  	        
   	  	     account ,  	        
   	  	     password ,  	        
@@ -34,36 +36,42 @@
   	  
   </sql>
 
-	<select id="queryObject" resultType="com.qiqiim.webserver.user.model.UserAccountEntity">
-		select  <include refid="Base_Column_List" />  from user_account where id = #{value}
-	</select>
-	
-	<select id="queryObjectByAccount" resultMap="userAccountAndInfoMap">
-		select  <include refid="Base_Column_List" />  from user_account where account = #{account}
-	</select>
-	
-	
+    <select id="queryObject" resultType="com.qiqiim.webserver.user.model.UserAccountEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from user_account where id = #{value}
+    </select>
 
-	<select id="queryList" resultType="com.qiqiim.webserver.user.model.UserAccountEntity">
-		select  <include refid="Base_Column_List" />  from user_account
+    <select id="queryObjectByAccount" resultMap="userAccountAndInfoMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_account where account = #{account}
+    </select>
+
+
+    <select id="queryList" resultType="com.qiqiim.webserver.user.model.UserAccountEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from user_account
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
             </when>
-			<otherwise>
+            <otherwise>
                 order by id desc
-			</otherwise>
+            </otherwise>
         </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="queryTotal" resultType="int">
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
 		select count(*) from user_account 
 	</select>
-	 
-	<insert id="save" parameterType="com.qiqiim.webserver.user.model.UserAccountEntity" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="save" parameterType="com.qiqiim.webserver.user.model.UserAccountEntity" useGeneratedKeys="true"
+            keyProperty="id">
 		insert into user_account
 		(
 			`account`, 
@@ -85,29 +93,29 @@
 			#{updateuser}
 		)
 	</insert>
-	 
-	<update id="update" parameterType="com.qiqiim.webserver.user.model.UserAccountEntity">
-		update user_account 
-		<set>
-			<if test="account != null">`account` = #{account}, </if>
-			<if test="password != null">`password` = #{password}, </if>
-			<if test="disablestate != null">`disablestate` = #{disablestate}, </if>
-			<if test="isdel != null">`isdel` = #{isdel}, </if>
-			<if test="updatedate != null">`updatedate` = NOW(), </if>
-			<if test="updateuser != null">`updateuser` = #{updateuser}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="delete">
+
+    <update id="update" parameterType="com.qiqiim.webserver.user.model.UserAccountEntity">
+        update user_account
+        <set>
+            <if test="account != null">`account` = #{account},</if>
+            <if test="password != null">`password` = #{password},</if>
+            <if test="disablestate != null">`disablestate` = #{disablestate},</if>
+            <if test="isdel != null">`isdel` = #{isdel},</if>
+            <if test="updatedate != null">`updatedate` = NOW(),</if>
+            <if test="updateuser != null">`updateuser` = #{updateuser}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
 		delete from user_account where id = #{value}
 	</delete>
-	
-	<delete id="deleteBatch">
-		delete from user_account where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+
+    <delete id="deleteBatch">
+        delete from user_account where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

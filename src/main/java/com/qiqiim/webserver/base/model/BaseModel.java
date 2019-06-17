@@ -1,8 +1,9 @@
 /**
- ***************************************************************************************
- *  @Author     1044053532@qq.com   
- *  @License    http://www.apache.org/licenses/LICENSE-2.0
- ***************************************************************************************
+ * **************************************************************************************
+ *
+ * @Author 1044053532@qq.com
+ * @License http://www.apache.org/licenses/LICENSE-2.0
+ * **************************************************************************************
  */
 package com.qiqiim.webserver.base.model;
 
@@ -10,20 +11,20 @@ import java.io.Serializable;
 
 public abstract class BaseModel implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2539516018935036745L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2539516018935036745L;
 
 
-	public abstract String toString();
-	
-	/**
-	 * 总记录数
-	 * */
-	protected int totalResults;
-	
-	/**
+    public abstract String toString();
+
+    /**
+     * 总记录数
+     * */
+    protected int totalResults;
+
+    /**
      * 标识是否分页，等于1 则为分页
      */
     protected int pagerFlag;
@@ -35,145 +36,145 @@ public abstract class BaseModel implements Serializable {
      * 显示的记录数
      */
     protected int rowsCount;
-    
+
     /**
      * 起始条数数
      */
     protected Integer startsize;
-    
+
     /**
      * 结束条数
      */
     protected int endsize;
-    
+
     protected String keyWord;
-    
+
     protected Long id;
-    
-    protected String createdate="";
+
+    protected String createdate = "";
 
     protected Long createuser;
-    
+
     protected String createuserName;
 
-    protected String updatedate="";
+    protected String updatedate = "";
 
     protected Long updateuser;
-    
+
     protected String updateuserName;
-  
 
-	public int getTotalResults() {
-		return totalResults;
-	}
 
-	public void setTotalResults(int totalResults) {
-		this.totalResults = totalResults;
-	}
+    public int getTotalResults() {
+        return totalResults;
+    }
 
-	public int getPagerFlag() {
-		return pagerFlag;
-	}
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
 
-	public void setPagerFlag(int pagerFlag) {
-		this.pagerFlag = pagerFlag;
-	}
+    public int getPagerFlag() {
+        return pagerFlag;
+    }
 
-	public int getRows() {
-		return rows;
-	}
+    public void setPagerFlag(int pagerFlag) {
+        this.pagerFlag = pagerFlag;
+    }
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+    public int getRows() {
+        return rows;
+    }
 
-	public int getRowsCount() {
-		return rowsCount;
-	}
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
 
-	public void setRowsCount(int rowsCount) {
-		this.rowsCount = rowsCount;
-	}
+    public int getRowsCount() {
+        return rowsCount;
+    }
 
-	public Integer getStartsize() {
-		return startsize;
-	}
+    public void setRowsCount(int rowsCount) {
+        this.rowsCount = rowsCount;
+    }
 
-	public void setStartsize(Integer startsize) {
-		this.startsize = startsize;
-	}
+    public Integer getStartsize() {
+        return startsize;
+    }
 
-	public int getEndsize() {
-		return endsize;
-	}
+    public void setStartsize(Integer startsize) {
+        this.startsize = startsize;
+    }
 
-	public void setEndsize(int endsize) {
-		this.endsize = endsize;
-	}
+    public int getEndsize() {
+        return endsize;
+    }
 
-	public String getKeyWord() {
-		return keyWord;
-	}
+    public void setEndsize(int endsize) {
+        this.endsize = endsize;
+    }
 
-	public void setKeyWord(String keyWord) {
-		this.keyWord = keyWord;
-	}
+    public String getKeyWord() {
+        return keyWord;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getCreatedate() {
-		return createdate;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setCreatedate(String createdate) {
-		this.createdate = createdate;
-	}
+    public String getCreatedate() {
+        return createdate;
+    }
 
-	public Long getCreateuser() {
-		return createuser;
-	}
+    public void setCreatedate(String createdate) {
+        this.createdate = createdate;
+    }
 
-	public void setCreateuser(Long createuser) {
-		this.createuser = createuser;
-	}
+    public Long getCreateuser() {
+        return createuser;
+    }
 
-	public String getCreateuserName() {
-		return createuserName;
-	}
+    public void setCreateuser(Long createuser) {
+        this.createuser = createuser;
+    }
 
-	public void setCreateuserName(String createuserName) {
-		this.createuserName = createuserName;
-	}
+    public String getCreateuserName() {
+        return createuserName;
+    }
 
-	public String getUpdatedate() {
-		return updatedate;
-	}
+    public void setCreateuserName(String createuserName) {
+        this.createuserName = createuserName;
+    }
 
-	public void setUpdatedate(String updatedate) {
-		this.updatedate = updatedate;
-	}
+    public String getUpdatedate() {
+        return updatedate;
+    }
 
-	public Long getUpdateuser() {
-		return updateuser;
-	}
+    public void setUpdatedate(String updatedate) {
+        this.updatedate = updatedate;
+    }
 
-	public void setUpdateuser(Long updateuser) {
-		this.updateuser = updateuser;
-	}
+    public Long getUpdateuser() {
+        return updateuser;
+    }
 
-	public String getUpdateuserName() {
-		return updateuserName;
-	}
+    public void setUpdateuser(Long updateuser) {
+        this.updateuser = updateuser;
+    }
 
-	public void setUpdateuserName(String updateuserName) {
-		this.updateuserName = updateuserName;
-	}
+    public String getUpdateuserName() {
+        return updateuserName;
+    }
 
-	 
+    public void setUpdateuserName(String updateuserName) {
+        this.updateuserName = updateuserName;
+    }
+
+
 }

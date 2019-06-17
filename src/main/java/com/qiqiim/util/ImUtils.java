@@ -36,7 +36,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 public class ImUtils {
-    
+
     /**
      * byte数组转换成16进制字符串
      *
@@ -58,37 +58,37 @@ public class ImUtils {
         }
         return stringBuilder.toString();
     }
-    
-   
-    
-   /**
-    * 获取IP地址及端口    
-    * @param socketaddress
-    * @return   {ip}:{prot}  字符串
-    */
+
+
+    /**
+     * 获取IP地址及端口
+     *
+     * @param socketaddress
+     * @return {ip}:{prot}  字符串
+     */
     public static String getIpAndProt(InetSocketAddress socketaddress) {
-    	String address="";
+        String address = "";
         if (address != null) {
-        	address=  getIp(socketaddress) + ":" + socketaddress.getPort();
-        }  
+            address = getIp(socketaddress) + ":" + socketaddress.getPort();
+        }
         return address;
     }
 
     /**
      * 获取IP地址
+     *
      * @param socketaddress
-     * @return  {ip} 字符串
+     * @return {ip} 字符串
      */
     public static String getIp(InetSocketAddress socketaddress) {
-    	String ip="";
+        String ip = "";
         if (socketaddress != null) {
-        	 InetAddress address = socketaddress.getAddress();
-        	 ip = (address == null) ? socketaddress.getHostName() : address.getHostAddress();
-        } 
+            InetAddress address = socketaddress.getAddress();
+            ip = (address == null) ? socketaddress.getHostName() : address.getHostAddress();
+        }
         return ip;
     }
-    
-    
+
 
     public static String getRemoteAddress(ChannelHandlerContext ctx) {
         InetSocketAddress remote = (InetSocketAddress) ctx.channel().remoteAddress();
@@ -100,5 +100,5 @@ public class ImUtils {
         return getIpAndProt(local);
     }
 
-     
+
 }

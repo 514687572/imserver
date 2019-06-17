@@ -61,13 +61,10 @@
 				    </div>
 				 </div>
 				 <div class="layui-form-item">
-				    <label class="layui-form-label">所在部门</label>
+				    <label class="layui-form-label">分组</label>
 				    <div class="layui-input-block">
 				      <select name="userInfo.deptid" lay-verify="required">
-				        <option value="1">总经办</option>
-				        <option value="2">开发一部</option>
-				        <option value="3">开发二部</option>
-				        <option value="4">财务部</option>
+				        <option value="0">默认分组</option>
 				      </select>
 				    </div>
 				  </div>

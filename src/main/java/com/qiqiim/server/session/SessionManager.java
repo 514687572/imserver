@@ -1,8 +1,9 @@
 /**
- ***************************************************************************************
- *  @Author     1044053532@qq.com   
- *  @License    http://www.apache.org/licenses/LICENSE-2.0
- ***************************************************************************************
+ * **************************************************************************************
+ *
+ * @Author 1044053532@qq.com
+ * @License http://www.apache.org/licenses/LICENSE-2.0
+ * **************************************************************************************
  */
 package com.qiqiim.server.session;
 
@@ -14,7 +15,7 @@ import org.directwebremoting.ScriptSession;
 
 import com.qiqiim.server.model.MessageWrapper;
 import com.qiqiim.server.model.Session;
- 
+
 public interface SessionManager {
 
     /**
@@ -25,23 +26,23 @@ public interface SessionManager {
     void addSession(Session session);
 
     void updateSession(Session session);
- 
+
 
     /**
      * 删除指定session
      *
      * @param sessionId
      */
-     void removeSession(String sessionId);
+    void removeSession(String sessionId);
 
     /**
      * 删除指定session
-     * 
+     *
      *
      * @param sessionId
      * @param nid  is socketid 
      */
-     void removeSession(String sessionId,String nid);
+    void removeSession(String sessionId, String nid);
 
     /**
      * 根据指定sessionId获取session
@@ -71,13 +72,12 @@ public interface SessionManager {
      * @return
      */
     int getSessionCount();
- 
-    Session createSession(MessageWrapper wrapper, ChannelHandlerContext ctx);
-    
-    Session createSession(ScriptSession scriptSession, String sessionid);
-    
-    boolean exist(String sessionId) ;
-    
 
-   
+    Session createSession(MessageWrapper wrapper, ChannelHandlerContext ctx);
+
+    Session createSession(ScriptSession scriptSession, String sessionid);
+
+    boolean exist(String sessionId);
+
+
 }

@@ -1,9 +1,10 @@
 /**
- ***************************************************************************************
- *  @Author     1044053532@qq.com   
- *  @GIT        https://gitee.com/qiqiim/qiqiim-server
- *  @License    http://www.apache.org/licenses/LICENSE-2.0
- ***************************************************************************************
+ * **************************************************************************************
+ *
+ * @Author 1044053532@qq.com
+ * @GIT https://gitee.com/qiqiim/qiqiim-server
+ * @License http://www.apache.org/licenses/LICENSE-2.0
+ * **************************************************************************************
  */
 package com.qiqiim.webserver.dwrmanage.connertor.impl;
 
@@ -23,48 +24,49 @@ import com.qiqiim.server.model.Session;
 import com.qiqiim.server.session.SessionManager;
 import com.qiqiim.webserver.dwrmanage.DwrUtil;
 import com.qiqiim.webserver.dwrmanage.connertor.DwrConnertor;
+
 @Service("dwrConnertorImpl")
 public class DwrConnertorImpl implements DwrConnertor {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());  
-	
-	@Autowired
-	private SessionManager sessionManager;
-	
-	@Override
-	public void close(ScriptSession scriptSession) {
-		   String sessionId = (String)scriptSession.getAttribute(Constants.SessionConfig.SESSION_KEY);
-		   try {
-			    String nid = scriptSession.getId();
-	        	Session session = sessionManager.getSession(sessionId);
-	      		if (session != null) {
-	      		  sessionManager.removeSession(sessionId,nid); 
-	      			 
-	      		  log.info("dwrconnector close sessionId -> " + sessionId + " success " );
-	      		}
-	        } catch (Exception e) {
-	        	log.error("dwrconnector close sessionId -->"+sessionId+"  Exception.", e);
-	            throw new RuntimeException(e.getCause());
-	        }
-	}
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Override
-	public void connect(ScriptSession scriptSession, String sessionid) {
-		try {
-      	  log.info("dwrconnector connect sessionId -> " + sessionid );
-          sessionManager.createSession(scriptSession, sessionid);
-      } catch (Exception e) {
-      	log.error("dwrconnector connect  Exception.", e);
-      }
-	}
+    @Autowired
+    private SessionManager sessionManager;
 
-	@Override
-	public void pushMessage(String sessionId, MessageWrapper wrapper)
-			throws RuntimeException {
-		  Session session = sessionManager.getSession(sessionId);
-		  session.write(wrapper.getBody()); 
-		  //dwrScriptSessionManagerImpl.getScriptSessionsByHttpSessionId(scriptSession.getHttpSessionId());
-		 //DwrUtil.sendMessageAuto((String)request.getParameter("my"), "sssssss中文");
-	}
+    @Override
+    public void close(ScriptSession scriptSession) {
+        String sessionId = (String) scriptSession.getAttribute(Constants.SessionConfig.SESSION_KEY);
+        try {
+            String nid = scriptSession.getId();
+            Session session = sessionManager.getSession(sessionId);
+            if (session != null) {
+                sessionManager.removeSession(sessionId, nid);
+
+                log.info("dwrconnector close sessionId -> " + sessionId + " success ");
+            }
+        } catch (Exception e) {
+            log.error("dwrconnector close sessionId -->" + sessionId + "  Exception.", e);
+            throw new RuntimeException(e.getCause());
+        }
+    }
+
+    @Override
+    public void connect(ScriptSession scriptSession, String sessionid) {
+        try {
+            log.info("dwrconnector connect sessionId -> " + sessionid);
+            sessionManager.createSession(scriptSession, sessionid);
+        } catch (Exception e) {
+            log.error("dwrconnector connect  Exception.", e);
+        }
+    }
+
+    @Override
+    public void pushMessage(String sessionId, MessageWrapper wrapper)
+            throws RuntimeException {
+        Session session = sessionManager.getSession(sessionId);
+        session.write(wrapper.getBody());
+        //dwrScriptSessionManagerImpl.getScriptSessionsByHttpSessionId(scriptSession.getHttpSessionId());
+        //DwrUtil.sendMessageAuto((String)request.getParameter("my"), "sssssss中文");
+    }
 
 }

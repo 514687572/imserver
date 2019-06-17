@@ -18,77 +18,82 @@ import com.qiqiim.server.model.proto.MessageProto;
 import com.qiqiim.server.proxy.MessageProxy;
 import com.qiqiim.webserver.dwrmanage.connertor.DwrConnertor;
 
-@Controller  
-@RemoteProxy(name = "Imwebserver")  
+@Controller
+@RemoteProxy(name = "Imwebserver")
 public class DwrController {
-	private final Logger log = LoggerFactory.getLogger(this.getClass());  
-	
-	@Autowired
-	private DwrConnertor dwrConnertorImpl;
-	@Autowired
-	private ImConnertor connertor;
-	@Autowired
-	private MessageProxy proxy;
-	/**
-	 * 创建连接
-	 * @param id
-	 */
-    @RemoteMethod  
-    public void serverconnect() {  
-    	  WebContext wct = WebContextFactory.get();
-    	  ScriptSession   session  = wct.getScriptSession();
-    	  dwrConnertorImpl.connect(session, (String)session.getAttribute(Constants.SessionConfig.SESSION_KEY));
-    }
-    
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private DwrConnertor dwrConnertorImpl;
+    @Autowired
+    private ImConnertor connertor;
+    @Autowired
+    private MessageProxy proxy;
+
     /**
-	 * 关闭连接
-	 * @param id
-	 */
-    @RemoteMethod  
-    public void closeconnect() {  
-    	  WebContext wct = WebContextFactory.get();
-    	  ScriptSession   session  = wct.getScriptSession();
-    	  dwrConnertorImpl.close(session); 
+     * 创建连接
+     *
+     * @param id
+     */
+    @RemoteMethod
+    public void serverconnect() {
+        WebContext wct = WebContextFactory.get();
+        ScriptSession session = wct.getScriptSession();
+        dwrConnertorImpl.connect(session, (String) session.getAttribute(Constants.SessionConfig.SESSION_KEY));
     }
-    
+
     /**
-   	 * 发送消息
-   	 * @param id
-   	 */
-       @RemoteMethod  
-       public void sendMsg(String receiver,String msg) {  
-    	   WebContext wct = WebContextFactory.get();
-    	   ScriptSession   session  = wct.getScriptSession();
-    	   MessageProto.Model.Builder  message = MessageProto.Model.newBuilder();
-    	   message.setCmd(Constants.CmdType.MESSAGE);
-    	   message.setReceiver(receiver);
-   		   MessageBodyProto.MessageBody.Builder  msgbody =  MessageBodyProto.MessageBody.newBuilder();
-   		   msgbody.setContent(msg); 
-   		   message.setContent(msgbody.build().toByteString());
-   		   String sessionId = (String)session.getAttribute(Constants.SessionConfig.SESSION_KEY);
-   		   MessageWrapper  wrapper = proxy.convertToMessageWrapper(sessionId, message.build());
-   		   connertor.pushMessage(wrapper.getSessionId(), wrapper);
-       }
-       
-       /**
-      	 * 发送群消息
-      	 * @param id
-      	 */
-          @RemoteMethod  
-          public void sendGroupMsg(String groupid,String msg) {  
-       	  
-       	   
-       	   WebContext wct = WebContextFactory.get();
-       	   ScriptSession   session  = wct.getScriptSession();
-       	   MessageProto.Model.Builder  message = MessageProto.Model.newBuilder();
-       	   message.setCmd(Constants.CmdType.MESSAGE);
-       	   message.setGroupId(groupid);
-  		   MessageBodyProto.MessageBody.Builder  msgbody =  MessageBodyProto.MessageBody.newBuilder();
-  		   msgbody.setContent(msg); 
-  		   message.setContent(msgbody.build().toByteString());
-  		   String sessionId = (String)session.getAttribute(Constants.SessionConfig.SESSION_KEY);
-  		   MessageWrapper  wrapper = proxy.convertToMessageWrapper(sessionId, message.build());
-  		   connertor.pushGroupMessage(wrapper);
-       }
-    
+     * 关闭连接
+     *
+     * @param id
+     */
+    @RemoteMethod
+    public void closeconnect() {
+        WebContext wct = WebContextFactory.get();
+        ScriptSession session = wct.getScriptSession();
+        dwrConnertorImpl.close(session);
+    }
+
+    /**
+     * 发送消息
+     *
+     * @param id
+     */
+    @RemoteMethod
+    public void sendMsg(String receiver, String msg) {
+        WebContext wct = WebContextFactory.get();
+        ScriptSession session = wct.getScriptSession();
+        MessageProto.Model.Builder message = MessageProto.Model.newBuilder();
+        message.setCmd(Constants.CmdType.MESSAGE);
+        message.setReceiver(receiver);
+        MessageBodyProto.MessageBody.Builder msgbody = MessageBodyProto.MessageBody.newBuilder();
+        msgbody.setContent(msg);
+        message.setContent(msgbody.build().toByteString());
+        String sessionId = (String) session.getAttribute(Constants.SessionConfig.SESSION_KEY);
+        MessageWrapper wrapper = proxy.convertToMessageWrapper(sessionId, message.build());
+        connertor.pushMessage(wrapper.getSessionId(), wrapper);
+    }
+
+    /**
+     * 发送群消息
+     *
+     * @param id
+     */
+    @RemoteMethod
+    public void sendGroupMsg(String groupid, String msg) {
+
+
+        WebContext wct = WebContextFactory.get();
+        ScriptSession session = wct.getScriptSession();
+        MessageProto.Model.Builder message = MessageProto.Model.newBuilder();
+        message.setCmd(Constants.CmdType.MESSAGE);
+        message.setGroupId(groupid);
+        MessageBodyProto.MessageBody.Builder msgbody = MessageBodyProto.MessageBody.newBuilder();
+        msgbody.setContent(msg);
+        message.setContent(msgbody.build().toByteString());
+        String sessionId = (String) session.getAttribute(Constants.SessionConfig.SESSION_KEY);
+        MessageWrapper wrapper = proxy.convertToMessageWrapper(sessionId, message.build());
+        connertor.pushGroupMessage(wrapper);
+    }
+
 }

@@ -28,7 +28,7 @@ public class SystemInfo {
 
     /**
      * 单例模式获取对象
-     * 
+     *
      * @return
      */
     public static SystemInfo getInstance() {
@@ -39,7 +39,7 @@ public class SystemInfo {
 
     /**
      * 本地IP
-     * 
+     *
      * @return IP地址
      */
     public String getIP() {
@@ -49,16 +49,16 @@ public class SystemInfo {
 
     /**
      * 获取用户机器名称
-     * 
+     *
      * @return
      */
     public String getHostName() {
         return localHost.getHostName();
     }
- 
+
     /**
      * 获取Mac地址
-     * 
+     *
      * @return Mac地址，例如：F0-4D-A2-39-24-A6
      */
     public String getMac() {
@@ -76,7 +76,7 @@ public class SystemInfo {
 
     /**
      * 获取当前系统名称
-     * 
+     *
      * @return 当前系统名，例如： windows xp
      */
     public String getSystemName() {
@@ -85,10 +85,10 @@ public class SystemInfo {
         String systemName = sysProperty.getProperty("os.name");
         return systemName;
     }
-    
+
     /**
      * 获取当前系统名称
-     * 
+     *
      * @return 当前系统名，例如： windows xp
      */
     public String getSystem() {
@@ -97,7 +97,7 @@ public class SystemInfo {
         String systemName = sysProperty.getProperty("sun.desktop");
         return systemName;
     }
-    
+
 
     private String getMacFromBytes(byte[] bytes) {
         StringBuffer mac = new StringBuffer();

@@ -1,8 +1,9 @@
 /**
- ***************************************************************************************
- *  @Author     1044053532@qq.com   
- *  @License    http://www.apache.org/licenses/LICENSE-2.0
- ***************************************************************************************
+ * **************************************************************************************
+ *
+ * @Author 1044053532@qq.com
+ * @License http://www.apache.org/licenses/LICENSE-2.0
+ * **************************************************************************************
  */
 package com.qiqiim.webserver.sys.controller;
 
@@ -31,44 +32,44 @@ import com.qiqiim.webserver.util.Query;
  */
 @Controller
 @RequestMapping("/sys/generator")
-public class SysGeneratorController extends BaseController{
-	@Autowired
-	private SysGeneratorService sysGeneratorServiceimpl;
-	
-	/**
-	 * 页面
-	 */
-	@RequestMapping("/page")
-	public String page(@RequestParam Map<String, Object> params){
-		return "sys/generatorlist";
-	}
-	
-	/**
-	 * 列表
-	 */
-	@RequestMapping(value="/list", produces="text/html;charset=UTF-8", method = RequestMethod.POST)
-	@ResponseBody
-	public Object list(@RequestParam Map<String, Object> params){
-		Query query = new Query(params);
-		List<Map<String, Object>>  list = sysGeneratorServiceimpl.queryList(query);
-		int total =  sysGeneratorServiceimpl.queryTotal(query);
-		return putMsgToJsonString(Constants.WebSite.SUCCESS,"",total,list);
-	}
-	
-	
-	/**
-	 * 生成代码
-	 */
-	@RequestMapping("/code")
-	public void code(@RequestParam String[] tables,HttpServletRequest request, HttpServletResponse response) throws IOException{
-		//获取表名，不进行xss过滤
-		byte[] data = sysGeneratorServiceimpl.generatorCode(tables);
-		
-		response.reset();  
-        response.setHeader("Content-Disposition", "attachment; filename=\"sourcecode.zip\"");  
-        response.addHeader("Content-Length", "" + data.length);  
-        response.setContentType("application/octet-stream; charset=UTF-8");  
-  
-        IOUtils.write(data, response.getOutputStream());  
-	}
+public class SysGeneratorController extends BaseController {
+    @Autowired
+    private SysGeneratorService sysGeneratorServiceimpl;
+
+    /**
+     * 页面
+     */
+    @RequestMapping("/page")
+    public String page(@RequestParam Map<String, Object> params) {
+        return "sys/generatorlist";
+    }
+
+    /**
+     * 列表
+     */
+    @RequestMapping(value = "/list", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object list(@RequestParam Map<String, Object> params) {
+        Query query = new Query(params);
+        List<Map<String, Object>> list = sysGeneratorServiceimpl.queryList(query);
+        int total = sysGeneratorServiceimpl.queryTotal(query);
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", total, list);
+    }
+
+
+    /**
+     * 生成代码
+     */
+    @RequestMapping("/code")
+    public void code(@RequestParam String[] tables, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取表名，不进行xss过滤
+        byte[] data = sysGeneratorServiceimpl.generatorCode(tables);
+
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=\"sourcecode.zip\"");
+        response.addHeader("Content-Length", "" + data.length);
+        response.setContentType("application/octet-stream; charset=UTF-8");
+
+        IOUtils.write(data, response.getOutputStream());
+    }
 }

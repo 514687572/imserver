@@ -1,12 +1,8 @@
 package com.qiqiim.webserver.user.dao;
 
+import com.qiqiim.webserver.base.dao.BaseDao;
+import com.qiqiim.webserver.user.model.UserGroupListEntity;
 
-import com.qiqiim.webserver.user.example.UserGroupListExample;
-import com.qiqiim.webserver.user.model.UserGroupList;
-import com.stip.mybatis.generator.plugin.GenericMapper;
+public interface UserGroupListDao extends BaseDao<UserGroupListEntity> {
 
-/**
- * 可添加自定义查询语句，方便后续扩展
- **/
-public interface UserGroupListDao extends GenericMapper<UserGroupList, UserGroupListExample, Long> {
 }

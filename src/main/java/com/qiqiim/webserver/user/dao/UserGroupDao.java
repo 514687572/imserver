@@ -1,15 +1,12 @@
 package com.qiqiim.webserver.user.dao;
 
-
-import com.qiqiim.webserver.user.example.UserGroupExample;
-import com.qiqiim.webserver.user.model.UserGroup;
-import com.stip.mybatis.generator.plugin.GenericMapper;
+import com.qiqiim.webserver.base.dao.BaseDao;
+import com.qiqiim.webserver.user.model.UserGroupEntity;
 
 import java.util.List;
+import java.util.Map;
 
-/**
- * 可添加自定义查询语句，方便后续扩展
- **/
-public interface UserGroupDao extends GenericMapper<UserGroup, UserGroupExample, Long> {
-    List<UserGroup> selectUserGroupByExample(long uid);
+
+public interface UserGroupDao extends BaseDao<UserGroupEntity> {
+    List<UserGroupEntity> queryGroupList(Map<String, Object> map);
 }

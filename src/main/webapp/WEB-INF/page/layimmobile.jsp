@@ -7,7 +7,8 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>牢记域名151860.com/1253222.com认准彩中彩</title>
+    <title>牢记域名https://151860.com推荐码140a78
+        认准导师QQ：97158367 ：70652242</title>
     <link rel="stylesheet" href="layui/css/layui.mobile.css" media="all"/>
     <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/message.js"></script>

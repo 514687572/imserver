@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户信息表</title>
+<title></title>
 <%@ include file="/WEB-INF/page/public/meta.jsp"%>
 </head>
 <body>
@@ -13,17 +13,16 @@
  <div style="margin: 20px;">     
     <div class="layui-btn-group listTable">
 	  <button class="layui-btn" data-type="getCheckData">获取多选内容</button> 
-	  <button class="layui-btn" data-type="saveOrUpdate">新增</button>
 	</div>
-	<table class="layui-table" lay-data="{ url:'<%=basePath%>/userinfo/list', method:'post',  page:true, id:'listTable'}" lay-filter="list">
+	<table class="layui-table" lay-data="{ url:'<%=basePath%>/usergroup/list', method:'post',  page:true, id:'listTable'}" lay-filter="list">
 	  <thead>
 	    <tr>
 	      <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
 	      							   <th lay-data="{field:'id'}"></th>
-		    			 			   <th lay-data="{field:'uid'}">用户id</th>
-		    			 			   <th lay-data="{field:'name'}">姓名</th>
-		    			 			   <th lay-data="{field:'nickname'}">昵称</th>
-		    			 			   <th lay-data="{field:'profilephoto'}">个人头像</th>
+		    			 			   <th lay-data="{field:'avatar'}"></th>
+		    			 			   <th lay-data="{field:'groupName'}"></th>
+		    			 			   <th lay-data="{field:'members'}"></th>
+		    			 			   <th lay-data="{field:'remark'}"></th>
 		    	      <th lay-data="{fixed: 'right', align:'center', toolbar: '#bar'}">操作</th>
 	    </tr>
 	  </thead>
@@ -32,10 +31,11 @@
  	  <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
  	  <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>
  	  <a class="layui-btn layui-btn-xs" lay-event="del" >删除</a>
-	</script> 
+ 	  <a class="layui-btn layui-btn-xs" lay-event="add" >add</a>
+	</script>
 </div>	
 	 
- <script src="<%=basePath%>/js/generator/userinfo.js?<%=System.currentTimeMillis()%>"></script>
+ <script src="<%=basePath%>/js/generator/usergroup.js?<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
 

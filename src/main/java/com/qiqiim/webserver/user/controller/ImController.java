@@ -53,9 +53,7 @@ public class ImController extends BaseController {
     @Autowired
     private MessageProxy proxy;
     @Autowired
-    private UserGroupService userGroupService;
-    @Autowired
-    private UserGroupListService userGroupListService;
+    private UserGroupService userGroupServiceImpl;
 
     /**
      * 单聊
@@ -126,10 +124,13 @@ public class ImController extends BaseController {
             my.setUsername(user.getName());
             my.setStatus("online");
 
-            List<UserGroup> list=userGroupService.selectUserGroupByExample(user.getUid());
+            Map<String, Object> map1=new HashMap<>();
+            map1.put("uid",user.getUid());
+            Query query = new Query(map1);
+            List<UserGroupEntity> list=userGroupServiceImpl.queryGroupList(query);
             List<ImGroupUserData> groups = new ArrayList<ImGroupUserData>();
 
-            for(UserGroup group:list){
+            for(UserGroupEntity group:list){
                 ImGroupUserData g = new ImGroupUserData();
                 g.setAvatar(group.getAvatar());
                 g.setId(group.getId());

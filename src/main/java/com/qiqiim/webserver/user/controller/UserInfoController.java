@@ -36,7 +36,7 @@ public class UserInfoController extends BaseController {
      */
     @RequestMapping("/page")
     public String page(@RequestParam Map<String, Object> params) {
-        return "userinfo";
+        return "user/userinfo";
     }
 
     /**

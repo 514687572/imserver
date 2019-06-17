@@ -5,7 +5,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>牢记域名151860.com/1253222.com认准彩中彩</title>
+    <title>牢记域名https://151860.com推荐码140a78
+        认准导师QQ：97158367 ：70652242</title>
     <link type="text/css" rel="stylesheet" href="css/im.css"/>
     <link rel="stylesheet" href="layui/css/layui.css">
     <script type="text/javascript" src="js/util.js"></script>
@@ -18,6 +19,7 @@
 <div id="container" class="wrap" style="left: 464px; height: 566px; right: auto;">
     <!--990宽度时请计算margin-top=（屏幕高度-990px）/2-->
     <div style="magin:30px;"> 欢迎 ${sessionScope.user.userInfo.name} </div>
+    <div style="magin:30px;">牢记域名<a href="https://151860.com">https://151860.com</a>推荐码140a78 认准导师QQ：97158367 ：70652242</div>
 </div>
 
 <script src="layui/layui.js"></script>

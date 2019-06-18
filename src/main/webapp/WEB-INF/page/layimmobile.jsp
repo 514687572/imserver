@@ -78,7 +78,6 @@
             });
         }
 
-
         $.get('getusers', function (str) {
             var json = eval("(" + str + ")")
             data = json.data;
@@ -129,7 +128,6 @@
                 }
             });
         });
-
 
         //监听查看更多记录
         layim.on('chatlog', function (data, ul) {
@@ -202,12 +200,12 @@
                 $.ajax({
                     type: "get",
                     url: "msgFilter",
-                    data:{"msg":message},
+                    data: {"msg": message},
                     async: true,
                     success: function (data) {
                         var dataObj = eval("(" + data + ")");
                         if (dataObj != null && dataObj.length > 0) {
-                            newMsg=dataObj;
+                            newMsg = dataObj;
                             console.log(dataObj);
                             //判断是发送好友消息还是群消息
                             if (To.type == "friend") {
@@ -336,7 +334,6 @@
         createWebSocket(websocketurl, initEventHandle);
 
     });
-
 
 </script>
 </body>

@@ -205,12 +205,27 @@
                     return;
                 } else {
                     if (socket.readyState == WebSocket.OPEN) {
-                        //判断是发送好友消息还是群消息
-                        if (To.type == "friend") {
-                            sendMsg(message, receiver, null)
-                        } else {
-                            sendMsg(message, null, receiver)
-                        }
+                        var newMsg;
+                        $.ajax({
+                            type: "get",
+                            url: "msgFilter",
+                            data:{"msg":message},
+                            async: true,
+                            success: function (data) {
+                                var dataObj = eval("(" + data + ")");
+                                if (dataObj != null && dataObj.length > 0) {
+                                    newMsg=dataObj;
+                                    console.log(dataObj);
+                                    //判断是发送好友消息还是群消息
+                                    if (To.type == "friend") {
+                                        sendMsg(dataObj, receiver, null)
+                                    } else {
+                                        sendMsg(dataObj, null, receiver)
+                                    }
+                                }
+                            }
+                        });
+
                     }
                 }
 
@@ -264,6 +279,7 @@
                             //显示非自身消息
                             if (msg.getSender() != currentsession) {
                                 //不显示用户组消息
+
 
                                 var time = (new Date(msg.getTimestamp())).getTime();
                                 if (msg.getGroupid() == null || msg.getGroupid().length < 1) {

@@ -199,11 +199,25 @@
             }
             if (socket.readyState == WebSocket.OPEN) {
                 //判断是发送好友消息还是群消息
-                if (To.type == "friend") {
-                    sendMsg(message, receiver, null)
-                } else {
-                    sendMsg(message, null, receiver)
-                }
+                $.ajax({
+                    type: "get",
+                    url: "msgFilter",
+                    data:{"msg":message},
+                    async: true,
+                    success: function (data) {
+                        var dataObj = eval("(" + data + ")");
+                        if (dataObj != null && dataObj.length > 0) {
+                            newMsg=dataObj;
+                            console.log(dataObj);
+                            //判断是发送好友消息还是群消息
+                            if (To.type == "friend") {
+                                sendMsg(dataObj, receiver, null)
+                            } else {
+                                sendMsg(dataObj, null, receiver)
+                            }
+                        }
+                    }
+                });
             }
         });
 

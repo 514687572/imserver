@@ -30,7 +30,8 @@
 	    <a class="layui-btn layui-btn-primary" href="usermessage/page" target="_blank"><i class="layui-icon">&#xe63a;</i>消息管理</a>
 	    <a class="layui-btn layui-btn-primary" href="usergroup/page" target="_blank"><i class="layui-icon">&#xe63a;</i>群管理</a>
 	    <a class="layui-btn layui-btn-primary" href="userinfo/page" target="_blank"><i class="layui-icon">&#xe63a;</i>用户管理</a>
-	    <%--<a class="layui-btn layui-btn-primary" href="sys/generator/page" target="_blank"><i class="layui-icon">&#xe635;</i>代码生成</a>--%>
+	    <a class="layui-btn layui-btn-primary" href="sysdict/page" target="_blank"><i class="layui-icon">&#xe63a;</i>敏感词管理</a>
+	    <a class="layui-btn layui-btn-primary" href="sys/generator/page" target="_blank"><i class="layui-icon">&#xe635;</i>代码生成</a>
 	  </div>
 	</fieldset>
   </div>

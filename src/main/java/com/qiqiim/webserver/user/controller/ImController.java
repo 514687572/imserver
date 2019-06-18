@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qiqiim.webserver.user.model.*;
 import com.qiqiim.webserver.user.service.*;
+import com.qiqiim.webserver.util.SensitiveDetection;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +56,8 @@ public class ImController extends BaseController {
     private MessageProxy proxy;
     @Autowired
     private UserGroupService userGroupServiceImpl;
+    @Autowired
+    private SysDictService sysDictServiceImpl;
 
     /**
      * 单聊
@@ -92,6 +96,10 @@ public class ImController extends BaseController {
         if (userAccount != null) {
             setLoginUser(userAccount);
             String template = check(request);
+
+            if("admin190618".equals(userAccount.getAccount())){
+                return "redirect:index.jsp";
+            }
             if (template.equals(Constants.ViewTemplateConfig.mobiletemplate)) {
                 return "layimmobile";
             }
@@ -341,6 +349,17 @@ public class ImController extends BaseController {
         dwrConnertorImpl.pushMessage(sessionid, wrapper);
 
         return JSONArray.toJSON("");
+    }
+
+    @RequestMapping(value = "/msgFilter", method = RequestMethod.GET)
+    @ResponseBody
+    public Object msgFilter(HttpServletResponse response, HttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception {
+        SysDictEntity sysDict = sysDictServiceImpl.queryObject(1l);
+        String[] words=sysDict.getDicValue().split(",");
+        List<String> newWords=CollectionUtils.arrayToList(words);
+        SensitiveDetection.init(newWords);
+
+        return JSONArray.toJSON(SensitiveDetection.replaceSensitiveWord(request.getParameter("msg"), '*'));
     }
 
 }

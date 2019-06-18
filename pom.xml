@@ -396,6 +396,7 @@
         	<directory>src/main/java</directory>
         	<includes>
         		<include>**/*.xml</include>
+				<include>**/*.txt</include>
         	</includes>
         </resource>
         <resource>    
@@ -404,7 +405,7 @@
                     <include>**/*.properties</include>    
                     <include>**/*.xml</include>    
                     <include>**/*.vm</include>      
-                </includes>    
+                </includes>
                 <filtering>false</filtering>    
          </resource> 
     </resources>

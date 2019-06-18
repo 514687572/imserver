@@ -1,8 +1,12 @@
 package com.qiqiim.webserver.user.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.qiqiim.webserver.user.model.UserGroupListEntity;
+import com.qiqiim.webserver.user.service.UserGroupListService;
+import com.qiqiim.webserver.user.service.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,13 +34,15 @@ import com.qiqiim.webserver.util.Query;
 public class UserAccountController extends BaseController {
     @Autowired
     private UserAccountService userAccountServiceImpl;
+    @Autowired
+    private UserGroupListService userGroupListServiceImpl;
 
     /**
      * 页面
      */
     @RequestMapping("/page")
     public String page(@RequestParam Map<String, Object> params) {
-        return "useraccount";
+        return "user/useraccount";
     }
 
     /**
@@ -71,6 +77,15 @@ public class UserAccountController extends BaseController {
         userAccount.setDisablestate(0);
         userAccount.setIsdel(0);
         userAccountServiceImpl.save(userAccount);
+
+        UserGroupListEntity group=new UserGroupListEntity();
+        group.setUid(userAccount.getId());
+        group.setGroupId(1l);
+        group.setCreateTime(new Date());
+        group.setUpdateTime(new Date());
+
+        userGroupListServiceImpl.save(group);
+
         return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, userAccount);
     }
 

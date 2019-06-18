@@ -29,8 +29,8 @@
 	  </thead>
 	</table>
 	<script type="text/html" id="bar">
- 	  <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
- 	  <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>
+<%-- 	  <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
+ 	  <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>--%>
  	  <a class="layui-btn layui-btn-xs" lay-event="del" >删除</a>
 	</script> 
 </div>	

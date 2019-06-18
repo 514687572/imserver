@@ -15,11 +15,11 @@
     <script type='text/javascript' src='dwr/engine.js'></script>
     <script type='text/javascript' src='dwr/interface/Imwebserver.js'></script>
 </head>
-<body>
-<div id="container" class="wrap" style="left: 464px; height: 566px; right: auto;">
+<body style="height: 100%;width: 100%;">
+<div id="container" class="wrap" style="height: 100%;width: 100%;margin-top: 0px;margin-left: 0px;left: 0px;background-image:  url(img/im/aeea1693097168545be0e61756085d1.jpg);background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">
     <!--990宽度时请计算margin-top=（屏幕高度-990px）/2-->
-    <div style="magin:30px;"> 欢迎 ${sessionScope.user.userInfo.name} </div>
-    <div style="magin:30px;">牢记域名<a href="https://151860.com">https://151860.com</a>推荐码140a78 认准导师QQ：97158367 ：70652242</div>
+    <div style="magin:30px;color: red;margin-top: 100px;font-size: 10px;" align="center"> 欢迎 ${sessionScope.user.userInfo.name} </div>
+    <div style="magin:50px;color: red;margin-top: 1px;" align="center">牢记域名<a href="https://151860.com" style="color: red;">https://151860.com</a>推荐码140a78 认准导师QQ：97158367 ：70652242</div>
 </div>
 
 <script src="layui/layui.js"></script>

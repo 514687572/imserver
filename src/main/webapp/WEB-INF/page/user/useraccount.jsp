@@ -14,7 +14,7 @@
     <div class="layui-btn-group listTable">
 	  <button class="layui-btn" data-type="getCheckData">获取多选内容</button> 
 	</div>
-	<table class="layui-table" lay-data="{ url:'/useraccount/list', method:'post',  page:true, id:'listTable'}" lay-filter="list">
+	<table class="layui-table" lay-data="{ url:'<%=basePath%>/useraccount/list', method:'post',  page:true, id:'listTable'}" lay-filter="list">
 	  <thead>
 	    <tr>
 	      <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
@@ -31,13 +31,13 @@
 	  </thead>
 	</table>
 	<script type="text/html" id="bar">
- 	  <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
- 	  <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>
+<%-- 	  <a class="layui-btn layui-btn-xs" lay-event="show" >查看</a>
+ 	  <a class="layui-btn layui-btn-xs" lay-event="edit" >修改</a>--%>
  	  <a class="layui-btn layui-btn-xs" lay-event="del" >删除</a>
 	</script> 
 </div>	
 	 
- <script src="/js/generator/useraccount.js?<%=System.currentTimeMillis()%>"></script>  
+ <script src="<%=basePath%>/js/generator/useraccount.js?<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
 
